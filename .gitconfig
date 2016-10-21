@@ -1,0 +1,58 @@
+[user]
+    name = David Huang
+	  email = magichz@outlook.com
+[log]
+    decorate = full
+[color]
+    ui = always
+[core]
+	excludesfile = /Users/magichz/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+    graphlog = log --graph --pretty=format:'%C(bold black)%h%Creset %C(bold red)%ad %C(bold blue)%s%Creset %C(bold yellow)%d%Creset %C(bold black)<%an>%Creset' --date=short
+    logtree = log --graph --oneline --decorate --all
+    standup = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset' --since yesterday --author Huang
+    unstage = reset --
+    co = checkout
+    cob = checkout -b
+    br = branch
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    fl = log -u
+    dl = "!git ll -1"
+    dlc = diff --cached HEAD^
+    f = "!git ls-files | grep -i"
+    la = "!git config -l | grep alias | cut -c 7-"
+    ours = "!f() { git co --ours $@ && git add $@;  }; f"
+    theirs = "!f() { git co --theirs $@ && git add $@;  }; f"
+    cp = cherry-pick
+    st = status -s
+    cl = clone
+    a = add
+    aa = !git add -u && git add . && git status
+    c = commit -m
+    diff = diff --word-diff
+    dc = diff --cached
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+    ff = merge --ff-only
+    ffpull = pull --ff-only
+    up = !git fetch origin && git rebase origin/master
+    ir = !git rebase -i origin/master
+    done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} && rake && git push
+    cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+    rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
+    pushn = !git push origin -u --set-upstream "$(git rev-parse --abbrev-ref HEAD)"
+    pushd = !git push origin --delete "$(git rev-parse --abbrev-ref HEAD)"
+    branches-to-kill = !git branch --merged origin/master|grep -v master|xargs -n1 echo git branch -d
+[push]
+    default = matching
