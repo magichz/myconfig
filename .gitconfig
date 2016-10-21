@@ -1,18 +1,3 @@
-[user]
-    name = add name
-	  email = add outlook account here
-[log]
-    decorate = full
-[color]
-    ui = always
-[core]
-	excludesfile = /Users/magichz/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [alias]
     graphlog = log --graph --pretty=format:'%C(bold black)%h%Creset %C(bold red)%ad %C(bold blue)%s%Creset %C(bold yellow)%d%Creset %C(bold black)<%an>%Creset' --date=short
     logtree = log --graph --oneline --decorate --all
